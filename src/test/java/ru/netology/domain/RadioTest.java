@@ -8,6 +8,25 @@ class RadioTest {
     Radio radio = new Radio();
 
     @Test
+    public void defaultNumberOfStations() {
+        Radio radio = new Radio();
+        assertEquals(10,radio.getNumberOfStation());
+
+    }
+
+    @Test
+    public void maxStationNumberOfStationOutRange () {
+        Radio radio = new Radio(12);
+        assertEquals(11,radio.getMaxStation());
+    }
+
+    @Test
+    public void maxStationNumberOfStationInRange () {
+        Radio radio = new Radio(6);
+        assertEquals(5,radio.getMaxStation());
+    }
+
+    @Test
     public void nextStationInRange() {
         radio.setCurrentStation(5);
         radio.shouldNextStation();
@@ -62,9 +81,9 @@ class RadioTest {
 
     @Test
     public void upVolumeOutRange() {
-        radio.setCurrentVolume(10);
+        radio.setCurrentVolume(100);
         radio.shouldUpVolume();
-        assertEquals(10, radio.getCurrentVolume());
+        assertEquals(100, radio.getCurrentVolume());
     }
 
     @Test
